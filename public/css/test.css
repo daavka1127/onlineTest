@@ -1,0 +1,60 @@
+.ques-text {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-style: solid 1px;
+    margin: 20px 20px;
+    padding: 20px 20px;
+    background-color: #e1e2e3;
+    text-align: center;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.ans-text {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 5px;
+    text-align: center;
+    background-color: #c7c8c9;
+    font-family: "Courier New", Courier, monospace;
+}
+.ans-text:hover {
+    background-color: #14c8ff;
+}
+.ans-box {
+    border-radius: 5px;
+    border-style: solid 1px;
+}
+.ans-text {
+    cursor: pointer;
+}
+.choosed {
+    cursor: no-drop;
+    background-color: #c7c8c9;
+}
+
+.correctChoosed {
+    background-color: #81f235;
+    cursor: no-drop;
+    transition: 0.5s;
+}
+.wrongChoosed {
+    background-color: #e21b40;
+    cursor: no-drop;
+    transition: 1s;
+}
+.choosed:hover {
+    cursor: no-drop;
+    background-color: #c7c8c9;
+}
+.correctChoosed:hover {
+    cursor: no-drop;
+    background-color: #81f235;
+}
+.wrongChoosed:hover {
+    cursor: no-drop;
+    background-color: #e21b40;
+}

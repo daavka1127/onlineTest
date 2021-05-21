@@ -14,5 +14,14 @@ use App\Http\Controllers\showTestController;
 |
 */
 
+
 Route::get('/', [showTestController::class, 'showTest']);
 Route::post('/login', [showTestController::class, 'login_user']);
+
+Route::get('/', function () {
+    return view('layouts.layout_user_login');
+});
+Route::get('/testshow', function () {
+    return view('testShow');
+});
+
