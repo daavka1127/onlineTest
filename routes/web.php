@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\showTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.layout_user_login');
-});
+Route::get('/', [showTestController::class, 'showTest']);
+Route::post('/login', [showTestController::class, 'login_user']);
