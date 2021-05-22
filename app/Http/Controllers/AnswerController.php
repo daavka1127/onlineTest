@@ -25,7 +25,7 @@ class AnswerController extends Controller
     protected function create(Request $req)
     {
         $question = new Question ;
-        $question ->test_id = $req->test_id;
+        $question ->test_id = $req->testID;
         $question ->question = $req->question;
         $question ->save();   
         $i=0;

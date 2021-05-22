@@ -13,7 +13,7 @@
                         <h2 style="text-align:center">
 
                             <div class="col-md-6">
-                                <select id="test_id" type="test_id" class="form-control" name="answer"  required autocomplete="test_id">
+                                <select id="test_id" type="test_id" class="form-control" name="testID"  required autocomplete="test_id">
                                     <option value="0" selected disabled>Төрлөө сонгоно уу</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
