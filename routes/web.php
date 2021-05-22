@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\LessonController;
 
 use App\Http\Controllers\showTestController;
 
@@ -43,3 +44,8 @@ Route::get('/answer/back', [AnswerController::class, 'back']);
 Route::get('/testshow', function () {
     return view('testShow');
 });
+
+//Lesson
+Route::get('/Lesson', [LessonController::class, 'show']);
+Route::get('lesson/new', [LessonController::class, 'NewLesson']);
+Route::post('/Lnew', [LessonController::class, 'create']);
