@@ -15,6 +15,6 @@
             <h3>asdasd</h3>
         </div>
     </body>
-    <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{url('jquery/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script>
 </html>
