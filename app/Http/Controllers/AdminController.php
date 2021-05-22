@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Test;
+use App\Models\Test;
 use DB;
 
 class AdminController extends Controller

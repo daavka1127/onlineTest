@@ -2,14 +2,11 @@
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        {{-- <link href="{{url('public/css/bootstrap4.css')}}" rel="stylesheet"> --}}
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
-        <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
-        <link href="{{url('public/css/bootstrap.min.css')}}" rel="stylesheet">
-        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js">
-          <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js">
-              <script type="text/javascript" src="js/jquery.printPage.js"></script>
+        <script src="{{url('public/test.js/jquery.min.js')}}"></script>
+        {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> --}}
+        <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">    
+        <script src="{{url('public/test.js/bootstrap.js')}}"></script>
+        <script src="{{url('public/test.js/table.edit.js')}}"></script>     
       </head>
       <body>
         <div class="container">
@@ -34,6 +31,7 @@
                       <h2 style="text-align:center">    
                       <td>{{ $row->id }}</td>
                       <td>{{ $row->test_name }}</td>
+                     
                       </h2>
                     </tr>
                     @endforeach
@@ -44,8 +42,9 @@
           </div>
         </div>
       </body>  
-      </html>
-
+      {{-- <script src="{{url('jquery/jquery-3.6.0.min.js')}}"></script> --}}
+    {{-- <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script> --}}
+     
       <script type="text/javascript">
     $(document).ready(function(){
        

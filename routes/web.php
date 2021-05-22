@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\AnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +27,10 @@ Route::post('/Tnew', [AdminController::class, 'create']);
 Route::post('/Test/action', [AdminController::class, 'action'])->name('tabledit.action');
 Route::get('/test/back', [AdminController::class, 'back']);
 Route::get('/home/back', [AdminController::class, 'homeback']);
+
+
+//Answer
+Route::get('/Answer', [AnswerController::class, 'show']);
+Route::get('/answer/new', [AnswerController::class, 'NewAnswer']);
+Route::post('/Anew', [AnswerController::class, 'create']);
+Route::get('/answer/back', [AnswerController::class, 'back']);
