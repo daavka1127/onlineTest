@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
+
+use App\Http\Controllers\showTestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +19,14 @@ use App\Http\Controllers\AnswerController;
 |
 */
 
+
+Route::get('/', [showTestController::class, 'showTest']);
+Route::post('/login', [showTestController::class, 'login_user']);
+
 Route::get('/', function () {
     return view('layouts.layout_user_login');
 });
+
 
 //test
 Route::get('/qwerty', [AdminController::class, 'show']);
@@ -34,3 +43,7 @@ Route::get('/Answer', [AnswerController::class, 'show']);
 Route::get('/answer/new', [AnswerController::class, 'NewAnswer']);
 Route::post('/Anew', [AnswerController::class, 'create']);
 Route::get('/answer/back', [AnswerController::class, 'back']);
+=======
+Route::get('/testshow', function () {
+    return view('testShow');
+});
