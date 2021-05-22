@@ -24,17 +24,27 @@ class AnswerController extends Controller
     }
     protected function create(Request $req)
     {
-        $data = new Question ;
-        $data ->test_id = $req->test_id;
-        $data ->question = $req->question;
-        $data ->save();   
-        DB::table('question')->get();
+        $question = new Question ;
+        $question ->test_id = $req->test_id;
+        $question ->question = $req->question;
+        $question ->save();   
+        $i=0;
+        foreach ($req->answers as $key) {
+            $answer = new Answer;
+            $answer->question_id = $question->id;
+            $answer ->answer = $key;  
+            if($i == $req->rad){
+                $answer ->is_true = 1;  
+            }
+            else{
+                $answer ->is_true = 0;  
+            }
+            $answer ->save();   
+            $i++;
+        }
+        
        
-        $data = new Answer;
-        $data ->answer = $req->answer;  
-        $data ->is_true = $req->is_true;  
-        $data ->save();   
-        DB::table('answer')->get();   
+        
     }
       public function getDataTable()
     {

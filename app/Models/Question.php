@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Test extends Model
+class Question extends Model
 {
     protected $table = 'question';
     public $primaryKey = 'id';
