@@ -31,27 +31,56 @@
                             <br>
 
                             <div class="col-md-6">
-                                <input type="radio" name="rad" value="0"/>
-                                <input name="asnwers" type="text" class="form-control" />
-                                <button class=""><img src="{{url('/images/x-button.png')}}" alt=""></button>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <input type="radio" name="rad" value="0"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input name="asnwers" type="text" class="form-control" />
+                                    </div>
+                                </div>
                             </div>
                             <br>
 
                             <div class="col-md-6">
-                                <input type="radio" name="rad" value="1"/>
-                                <input name="asnwers" type="text" class="form-control" />
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <input type="radio" name="rad" value="0"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input name="asnwers" type="text" class="form-control" />
+                                    </div>
+                                </div>
                             </div>
                             <br>
 
                             <div class="col-md-6">
-                                <input type="radio" name="rad" value="2"/>
-                                <input name="asnwers" type="text" class="form-control" />
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <input type="radio" name="rad" value="0"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input name="asnwers" type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class=""><img width="20" src="{{url('/images/x-button.png')}}" alt=""></button>
+                                    </div>
+                                </div>
                             </div>
                             <br>
 
                             <div class="col-md-6">
-                                <input type="radio" name="rad" value="3"/>
-                                <input name="asnwers" type="text" class="form-control" />
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <input type="radio" name="rad" value="0"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input name="asnwers" type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class=""><img width="20" src="{{url('/images/x-button.png')}}" alt=""></button>
+                                    </div>
+                                </div>
                             </div>
 
                             

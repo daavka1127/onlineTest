@@ -43,7 +43,7 @@ Route::get('/Answer', [AnswerController::class, 'show']);
 Route::get('/answer/new', [AnswerController::class, 'NewAnswer']);
 Route::post('/Anew', [AnswerController::class, 'create']);
 Route::get('/answer/back', [AnswerController::class, 'back']);
-=======
+
 Route::get('/testshow', function () {
     return view('testShow');
 });
