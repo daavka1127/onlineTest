@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\Student;
+use App\Models\Answer;
 use DB;
 
 class showTestController extends Controller
@@ -12,12 +13,18 @@ class showTestController extends Controller
     public function showTest(){
         if (Session::has('user'))
         {
-            $this->createQuestions();
             $questions = [];
-            $questions = Session::get('questions');
-            // return $questions;
+            if (Session::has('questions')){
+                $questions = Session::get('questions');
+            }
+            else{
+                $this->createQuestions();
+                $questions = Session::get('questions');
+            }
             // return Session::get('user');
-            return view('testDadaa', compact('questions'));
+            $firstName = Session::get("lastName");
+
+            return view('takeTest.takeTest', compact('questions', 'firstName'));
         }else{
             return view('layouts.layout_user_login');
         }
@@ -33,13 +40,15 @@ class showTestController extends Controller
             $student->last_name = $req->lastName;
             $student->save();
             Session::put('user', $student->id);
+            Session::put('lastName', $student->last_name);
+            Session::put('testID', '1');
             return redirect('/');
         } catch (\Throwable $th) {
             return "Алдаа гарлаа";
         }
     }
 
-    public function createQuestions(){
+    public function createQuestions($testID){
         $questions = DB::table('question')->get();
         // return $questions;
         $arrQuestions = [];
@@ -74,5 +83,37 @@ class showTestController extends Controller
             ->where('question_id', '=', $qid)
             ->get();
         return $answers;
+    }
+
+    public function finishTest(Request $req){
+        $questions = Session::get('questions');
+        $testID = Session::get("testID");
+        if($testID == 1){
+            Session::put('testID', '2');
+        }
+        else{
+            Session::flush();
+        }
+        $point = 0;
+        foreach ($req->userAns as $key => $value) {
+            $answerPoint = $this->answerPoint($value["ansID"]);
+            $point = $point + $answerPoint;
+        }
+        return "Та " . count($questions) . " ширхэг асуултнаас " . $point . " оноо авлаа.";
+    }
+
+    public function answerPoint($ansID){
+        $answer = Answer::find($ansID);
+        if($answer == null){
+            return 0;
+        }
+        else{
+            return $answer->is_true;
+        }
+    }
+
+    public function getTestCount(){
+        $tests = DB::table("test")->get();
+        return count($tests);
     }
 }

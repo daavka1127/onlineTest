@@ -56,3 +56,7 @@ Route::get('/test/dadaa/get/questions', [showTestController::class, 'createQuest
 Route::get('/Lesson', [LessonController::class, 'show']);
 Route::get('lesson/new', [LessonController::class, 'NewLesson']);
 Route::post('/Lnew', [LessonController::class, 'create']);
+
+
+Route::post('/finish/test', [showTestController::class, 'finishTest']);
+Route::get('/finish/test/{ansID}', [showTestController::class, 'answerPoint']);
