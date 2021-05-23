@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\LessonController;
 
 use App\Http\Controllers\showTestController;
 use App\Http\Controllers\testDadaaController;
@@ -51,3 +52,7 @@ Route::get('/testshow', function () {
 Route::get('/test/dadaa', [testDadaaController::class, 'test']);
 
 Route::get('/test/dadaa/get/questions', [showTestController::class, 'createQuestions']);
+//Lesson
+Route::get('/Lesson', [LessonController::class, 'show']);
+Route::get('lesson/new', [LessonController::class, 'NewLesson']);
+Route::post('/Lnew', [LessonController::class, 'create']);
