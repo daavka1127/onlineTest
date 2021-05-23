@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
 
 use App\Http\Controllers\showTestController;
-
+use App\Http\Controllers\testDadaaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +43,11 @@ Route::get('/answer/back', [AnswerController::class, 'back']);
 Route::get('/testshow', function () {
     return view('testShow');
 });
+
+
+// Route::get('/test/dadaa', function(){
+//     return view('testDadaa');
+// });
+Route::get('/test/dadaa', [testDadaaController::class, 'test']);
+
+Route::get('/test/dadaa/get/questions', [showTestController::class, 'createQuestions']);
