@@ -13,10 +13,10 @@
                         <h2 style="text-align:center">
 
                             <div class="col-md-6">
-                                <select id="test_id" type="test_id" class="form-control" name="testID"  required autocomplete="test_id">
+                                <select id="id" type="id" class="form-control" name="lessonName"  required autocomplete="id">
                                     <option value="0" selected disabled>Хичээлээ сонгоно уу</option>
-                                    @foreach($lessons as $lesson)
-                                    <option value="{{$lesson->test_id}}">{{$lesson->lessonName}}</option>
+                                    @foreach($lesson as $lesson)
+                                    <option value="{{$lesson->id}}">{{$lesson->lessonName}}</option>
                                     @endforeach
                                 </select>
                             </div>

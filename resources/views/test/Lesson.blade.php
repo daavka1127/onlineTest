@@ -2,11 +2,16 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{url('public/test.js/jquery.min.js')}}"></script>
+    {{-- <script src="{{url('public/test.js/jquery.min.js')}}"></script> --}}
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> --}}
-    <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">    
-    <script src="{{url('public/test.js/bootstrap.js')}}"></script>
-    <script src="{{url('public/test.js/table.edit.js')}}"></script>     
+    <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}"> 
+   {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> --}}
+   <link rel="stylesheet" href="{{url('components/js/lesson/datatable.css')}}"> 
+<script src="{{url('components/js/lesson/jquery.3.5.1.js')}}"></script>
+<script src="{{url('components/js/lesson/bootstrap.js')}}"></script>
+<script src="{{url('components/js/lesson/poper.js')}}"></script>
+<script src="{{url('components/js/lesson/jquery.3.6.0.js')}}"></script>
+<script src="{{url('components/js/lesson/datatable.js')}}"></script>
   </head>
   <body>
     <div class="container">
@@ -14,71 +19,21 @@
       <br />
       <div class="panel panel-default">
         <h4 class="text-center"><strong>Хичээлийн бүртгэл</strong></h4>
-        <div class="panel-body">
-          <div class="table-responsive">
-            @csrf
-            <table id="editable" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-
-              <th>id</th>
-              <th>test_id</th>
-              <th>rank</th>
-              <th>lessonName</th>
-              <th>question_count</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($data as $row)
-                <tr>
-                  <h2 style="text-align:center">    
-                  <td>{{ $row->id }}</td>
-                  <td>{{ $row->test_id }}</td>
-                  <td>{{ $row->rank }}</td>
-                  <td>{{ $row->lessonName }}</td>
-                  <td>{{ $row->question_count }}</td>
-                  </h2>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-        </div>
-        </div>
+        <section style="padding-top:60px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                {!! $dataTable->table()!!}
+              </div>
+            </div>
+          </div>
+        </section>
+        {!! $dataTable->scripts()!!}
       </div>
-    </div>
   </body>  
   {{-- <script src="{{url('jquery/jquery-3.6.0.min.js')}}"></script> --}}
 {{-- <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script> --}}
  
-  <script type="text/javascript">
-$(document).ready(function(){
-   
-  $.ajaxSetup({
-    headers:{
-      'X-CSRF-Token' : $("input[name=_token]").val()
-    }
-  });
-
-  $('#editable').Tabledit({
-    url:'{{ route("tabledit.action") }}',
-    dataType:"json",
-    columns:{
-      identifier:[0, 'id'],
-      editable:[[1, 'test_name']]
-    },
-    restoreButton:false,
-    onSuccess:function(data, textStatus, jqXHR)
-    {
-      if(data.action == 'delete')
-      {
-        $('#'+data.id).remove();
-      }
-    }
-  });
-
-});  
-</script>
-
  <h2 style="text-align:center">
  <a href="{{url("/lesson/new")}}" class="btn btn-success">Нэмэх</a>
  <a href="{{url("/home/back")}}" class="btn btn-danger">Буцах</a>
