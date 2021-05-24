@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lesson extends Model
+class Result extends Model
 {
-    protected $table = 'lesson';
+    use HasFactory;
+
+    protected $table = 'result';
     public $primaryKey = 'id';
     public $timestamps = false;
 }

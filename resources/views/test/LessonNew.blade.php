@@ -13,7 +13,28 @@
                         <h2 style="text-align:center">
 
                             <div class="col-md-6">
-                                <input id="lessonName" type="text" class="form-control @error('lessonName') is-invalid @enderror" name="lessonName" value="{{ old('lessonName') }}" placeholder="Хичээлээ оруулна уу!" required autocomplete="lessonName" autofocus>
+                                <input id="test_id" type="text"  class="form-control @error('test_id') is-invalid @enderror" name="test_id" value="{{ old('test_id') }}" placeholder="test_id оруулна уу!" required autocomplete="test_id" autofocus>
+
+                                @error('test_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <br>
+
+                            <div class="col-md-6">
+                                <select id="rank" type="rank" class="form-control" name="rank"  required autocomplete="rank">
+                                    <option value="-1" selected disabled>Төрлөө сонгоно уу</option>
+                                    <option value="0">Ахлагч</option>
+                                    <option value="1">Офицер</option>
+                                    <option value="2">Бүгд</option>
+                                </select>
+                            </div>
+                            <br>
+
+                            <div class="col-md-6">
+                                <input id="lessonName" type="text"  class="form-control @error('lessonName') is-invalid @enderror" name="lessonName" value="{{ old('lessonName') }}" placeholder="lessonName оруулна уу!" required autocomplete="lessonName" autofocus>
 
                                 @error('lessonName')
                                     <span class="invalid-feedback" role="alert">
@@ -24,20 +45,9 @@
                             <br>
 
                             <div class="col-md-6">
-                                <input id="rank" type="text"  class="form-control @error('rank') is-invalid @enderror" name="rank" value="{{ old('rank') }}" placeholder="Цолоо оруулна уу!" required autocomplete="rank" autofocus>
+                                <input id="question_count" type="text" class="form-control @error('question_count') is-invalid @enderror" name="question_count" value="{{ old('question_count') }}" placeholder="question_count!" required autocomplete="question_count" autofocus>
 
-                                @error('rank')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <br>
-
-                            <div class="col-md-6">
-                                <input id="lessonName" type="text" class="form-control @error('lessonName') is-invalid @enderror" name="lessonName" value="{{ old('lessonName') }}" placeholder="Хичээлээ оруулна уу!" required autocomplete="lessonName" autofocus>
-
-                                @error('lessonName')
+                                @error('question_count')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

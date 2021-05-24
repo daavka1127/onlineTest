@@ -6,54 +6,43 @@ use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Lesson;
 use DB;
 
 class AnswerController extends Controller
 {
-<<<<<<< HEAD
+
     public function show(){
         $answer = DB::table('answer')->get();
         $question = DB::table('question')->get();
-        return view('test.Answer', compact('answer','question'));
+        $lesson = DB::table('lesson')->get();
+        return view('test.Answer', compact('answer','question','lesson'));
     }
     public function back(){
         $answer = DB::table('answer')->get();
         $question = DB::table('question')->get();
-        return view('test.Answer', compact('answer','question'));
-=======
-    public function show()
-    {
-        $data = DB::table('answer')->get();
-        $data = DB::table('question')->get();
-        return view('test.Answer', compact('data'));
-    }
-    public function back()
-    {
-        $data = DB::table('answer')->get();
-        $data = DB::table('question')->get();
-        return view('test.Answer', compact('data'));
->>>>>>> 0de2ff30ed8f35d480f5d51d92f620e45dc2d054
+        $lesson = DB::table('lesson')->get();
+        return view('test.Answer', compact('answer','question','lesson'));
     }
     public function NewAnswer()
     {
-        $lessons = DB::table('lesson')->get();
-        return view('test.AnswerNew', compact('lessons'));
+        $lesson = DB::table('lesson')->get();
+        return view('test.AnswerNew', compact('lesson'));
     }
     protected function create(Request $req)
     {
-<<<<<<< HEAD
+        // $lessons = new Lesson;
+        // $lessons ->lessonName;
+        // $lessons ->save();
+
         $question = new Question ;
-        $question ->lession_id = $req->lession_id;
+        $question->lesson_id = $req->lessonName;
         $question ->question = $req->question;
-        $question ->save();   
+        $question ->save();
         $i=0;
-=======
-        $question = new Question;
-        $question->lesson_id = $req->testID;
-        $question->question = $req->question;
-        $question->save();
-        $i = 0;
->>>>>>> 0de2ff30ed8f35d480f5d51d92f620e45dc2d054
+
+
+
         foreach ($req->answers as $key) {
             $answer = new Answer;
             $answer->question_id = $question->id;
@@ -66,13 +55,15 @@ class AnswerController extends Controller
             $answer->save();
             $i++;
         }
+
     }
 
     public function getDataTable()
     {
+        $lesson = DB::table('lesson')->get();
         $question = DB::table('question')->get();
         $answer = DB::table('answer')->get();
-        return DataTables::of($question, $answer)
+        return DataTables::of($question, $answer , $lessons)
             ->make(true);
     }
 }
