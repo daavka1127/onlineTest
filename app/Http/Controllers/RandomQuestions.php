@@ -54,4 +54,10 @@ class RandomQuestions extends Controller
             ->get();
         return $answers;
     }
+
+    public function getPrintQuestions($testID)
+    {
+        $ques = $this->getRandomQuestions($testID);
+        return view('testShow', compact('ques'));
+    }
 }
