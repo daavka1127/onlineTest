@@ -22,8 +22,10 @@
                 <tr>
 
               <th>id</th>
+              <th>test_id</th>
               <th>rank</th>
               <th>lessonName</th>
+              <th>question_count</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,9 +33,10 @@
                 <tr>
                   <h2 style="text-align:center">    
                   <td>{{ $row->id }}</td>
+                  <td>{{ $row->test_id }}</td>
                   <td>{{ $row->rank }}</td>
                   <td>{{ $row->lessonName }}</td>
-    
+                  <td>{{ $row->question_count }}</td>
                   </h2>
                 </tr>
                 @endforeach

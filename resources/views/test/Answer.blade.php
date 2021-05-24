@@ -20,10 +20,8 @@
                 <tr>
 
               <th>id</th>
-              <th>test_id</th>
+              <th>lesson_id</th>
               <th>question</th>
-              <th>answer</th>
-              <th>is_true</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,10 +29,9 @@
                 <tr>
                   <h2 style="text-align:center">    
                   <td>{{ $row->id }}</td>
-                  <td>{{ $row->test_id }}</td>
+                  <td>{{ $row->lesson_id }}</td>
                   <td>{{ $row->question }}</td>
-                  <td>{{ $row->answer }}</td>
-                  <td>{{ $row->is_true }}</td>
+           
                   </h2>
                 </tr>
                 @endforeach
