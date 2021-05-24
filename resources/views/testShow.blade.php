@@ -15,61 +15,41 @@
                 margin: auto;
                 width: 60%;
                 padding: 3px;
-                border: 1px solid;
             }
-            .header_logo{
-
-            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+}
         </style>
+
     </head>
     <body>
-        <div class="header_logo">
-            <img src="{{url("img/tovlogo.png")}}" height="50">
-            Зэвсэгт хүчний программ хангамжын төвд хөгжүүлэв.
-        </div>
-        <div class="test_text col-md-12">
-            <div class="test_text_head col-md-12">
+
+<?php
+    $letter = ['A', 'B', 'C', 'D'];
+
+?>
+    @foreach ($ques as $key => $value)
+        <div class="ques col-md-12" qid="1">
+            <div>{{$value["number"]}}. {{$value["question"]}}</div>
+            <div class="ans col-md-12">
+
                 <div class="row">
-                    <div class="timer col-md-6" style="float: left;">
-                        23:29
-                    </div>
-                    <div class="question_mark col-md-6" style="float: right;">
-                        50/15
-                    </div>
+                    <?php $i=0;?>
+                    @foreach ($value["answers"] as $key => $ansVal)
+                        <div point="{{$ansVal["is_true"]}}">
+                            @if ($ansVal["is_true"] == 1)
+                            <?php echo $letter[$i].'. ';?> <strong>{{$ansVal["answer"]}}</strong><?php $i++;?>
+                            @else
+                                <?php echo $letter[$i].'. ';?> {{$ansVal["answer"]}} <?php $i++;?>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="test_text_body">
-                    <div class="ques col-md-12" qid="1">
-                        <div class="ques-text">1.&nbsp;asdfasdfasdf</div>
-                        <div class="ans col-md-12">
-
-                            <div class="row">
-                                <div class="ans-box col-md-3">
-                                    <div class="ans-text" aord="3"
-                                        aqid="2"> bootstrap js bootstrap min js map </div>
-                                </div>
-
-                                <div class="ans-box col-md-3">
-                                    <div class="ans-text" aord="3"
-                                        aqid="2"> bootstrap js bootstrap min js map </div>
-                                </div>
-                                <div class="ans-box col-md-3">
-                                    <div class="ans-text" aord="3"
-                                        aqid="2"> bootstrap js bootstrap min js map </div>
-                                </div>
-                                <div class="ans-box col-md-3">
-                                    <div class="ans-text" aord="3"
-                                        aqid="2"> bootstrap js bootstrap min js map </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="text-align: right;">
-                        <a href="#" type="button" class="btn btn-success" id="nextBtn" style="font-size:18px; margin-top:20px;">Дараагийнх ></a>
-                    </div>
-            </div>
         </div>
+    @endforeach
+
     </body>
     <script src="{{url('jquery/jquery-3.6.0.min.js')}}"></script>
     <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script>

@@ -23,6 +23,7 @@
     
                   <th>id</th>
                   <th>test_name</th>
+                  <th>time</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -31,6 +32,7 @@
                       <h2 style="text-align:center">    
                       <td>{{ $row->id }}</td>
                       <td>{{ $row->test_name }}</td>
+                      <td>{{ $row->time }}</td>
                      
                       </h2>
                     </tr>

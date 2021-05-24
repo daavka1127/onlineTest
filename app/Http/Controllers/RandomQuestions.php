@@ -31,6 +31,7 @@ class RandomQuestions extends Controller
                 $datarow['question'] = $question->question;
 
                 $answers = $this->getAnswersByID($question->id);
+
                 $ansTable = [];
                 foreach ($answers as $answer) {
                     $ansRow = [];
@@ -54,5 +55,11 @@ class RandomQuestions extends Controller
             ->where('question_id', '=', $qid)
             ->get();
         return $answers;
+    }
+
+    public function getPrintQuestions($testID)
+    {
+        $ques = $this->getRandomQuestions($testID);
+        return view('testShow', compact('ques'));
     }
 }
