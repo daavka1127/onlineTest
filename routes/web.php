@@ -45,7 +45,7 @@ Route::get('/answer/back', [AnswerController::class, 'back']);
 Route::get('/testshow', function () {
     return view('testShow');
 });
-
+Route::get('/printquestion/{testID}', [RandomQuestions::class, 'getPrintQuestions']);
 
 // Route::get('/test/dadaa', function(){
 //     return view('testDadaa');
