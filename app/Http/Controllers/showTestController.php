@@ -96,6 +96,12 @@ class showTestController extends Controller
         $result->result_point = $point;
         $result->save();
 
+        $array = array(
+            'status' => 'success',
+            'msg' => "Та " . count($questions) . " ширхэг асуултнаас " . $point . " оноо авлаа.",
+            'testID' => $testID
+        );
+
         if ($testID == 1) {
             Session::forget('questions');
             Session::put('testID', '2');
@@ -104,11 +110,6 @@ class showTestController extends Controller
             $testID = 3;
         }
 
-        $array = array(
-            'status' => 'success',
-            'msg' => "Та " . count($questions) . " ширхэг асуултнаас " . $point . " оноо авлаа.",
-            'testID' => $testID
-        );
         return $array;
     }
 
