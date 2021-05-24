@@ -16,6 +16,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <h3 class="text-center">Сайн байна уу? {{$firstName}}</h3>
+                <h2 class="text-center">{{$testName}}</h2>
                 <div class="header_logo">
                     <img src="{{url("img/tovlogo.png")}}" height="50">
                     Зэвсэгт хүчний программ хангамжын төвд хөгжүүлэв.
@@ -30,7 +31,7 @@
 
                             <div class="row">
                                 @foreach ($value["answers"] as $key => $ansVal)
-                                    <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}" point="{{$ansVal["is_true"]}}">
+                                    <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}">
                                         <div class="ans-text"> 
                                             {{$ansVal["answer"]}}
                                         </div>

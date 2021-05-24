@@ -53,8 +53,15 @@ $("#btnFinishTest").click(function(){
             userAns: jsonUserAns
         },
         success: function(res){
-            console.log(res);
-            alert(res);
+            if(res.status == "success"){
+                console.log(res);
+                alert(res.msg);
+                localStorage.clear();
+                window.location.replace("/");
+            }
+            else{
+                alert("Алдаа гарлаа!!!!!!!!!!!");
+            }
         }
     });
 });

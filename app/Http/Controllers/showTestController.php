@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Session;
 use App\Models\Student;
 use App\Models\Answer;
+use App\Models\Test;
 use DB;
+use App\Http\Controllers\RandomQuestions;
 
 class showTestController extends Controller
 {
@@ -19,14 +21,16 @@ class showTestController extends Controller
                 $questions = Session::get('questions');
             }
             else{
-                $this->createQuestions();
+                $randQuestion = new RandomQuestions;
+                $randQuestion->getRandomQuestions(Session::get('testID'));
                 $questions = Session::get('questions');
             }
             // return Session::get('user');
 
             $firstName = Session::get("lastName");
+            $testName = $this->getTestName(Session::get('testID'));
 
-            return view('takeTest.takeTest', compact('questions', 'firstName'));
+            return view('takeTest.takeTest', compact('questions', 'firstName', 'testName'));
         }else{
             return view('layouts.layout_user_login');
         }
@@ -34,6 +38,7 @@ class showTestController extends Controller
 
     public function login_user(Request $req)
     {
+        // return "A";
         try {
             $student = new Student;
             $student->unit = $req->unit;
@@ -51,60 +56,28 @@ class showTestController extends Controller
         }
     }
 
-    public function createQuestions($testID){
-        $questions = DB::table('question')->get();
-
-        // return $questions;
-        $arrQuestions = [];
-        $rowCount = 1;
-        foreach ($questions as $question) {
-            $datarow = [];
-            $datarow['number'] = $rowCount;
-            $datarow['id'] = $question->id;
-            $datarow['lesson_id'] = $question->lesson_id;
-            $datarow['question'] = $question->question;
-
-            $answers = $this->getAnswersByID($question->id);
-            $ansTable = [];
-            foreach ($answers as $answer) {
-                $ansRow = [];
-                $ansRow['id'] = $answer->id;
-                $ansRow['answer'] = $answer->answer;
-                $ansRow['is_true'] = $answer->is_true;
-                array_push($ansTable, $ansRow);
-            }
-            $datarow['answers'] = $ansTable;
-
-            array_push($arrQuestions, $datarow);
-            $rowCount++;
-        }
-        Session::put('questions', $arrQuestions);
-        // return $arrQuestions;
-    }
-
-    public function getAnswersByID($qid)
-    {
-        $answers = DB::table('answer')
-            ->where('question_id', '=', $qid)
-            ->get();
-        return $answers;
-    }
-
     public function finishTest(Request $req){
         $questions = Session::get('questions');
         $testID = Session::get("testID");
         if($testID == 1){
+            Session::forget('questions');
             Session::put('testID', '2');
         }
         else{
             Session::flush();
+            $testID = 3;
         }
         $point = 0;
         foreach ($req->userAns as $key => $value) {
             $answerPoint = $this->answerPoint($value["ansID"]);
             $point = $point + $answerPoint;
         }
-        return "Та " . count($questions) . " ширхэг асуултнаас " . $point . " оноо авлаа.";
+        $array = array(
+            'status' => 'success',
+            'msg' => "Та " . count($questions) . " ширхэг асуултнаас " . $point . " оноо авлаа.",
+            'testID' => $testID
+        );
+        return $array;
     }
 
     public function answerPoint($ansID){
@@ -120,5 +93,10 @@ class showTestController extends Controller
     public function getTestCount(){
         $tests = DB::table("test")->get();
         return count($tests);
+    }
+
+    public function getTestName($testID){
+        $test = Test::find($testID);
+        return $test->test_name;
     }
 }
