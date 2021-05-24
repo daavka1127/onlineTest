@@ -11,14 +11,14 @@ use DB;
 class AnswerController extends Controller
 {
     public function show(){
-        $data = DB::table('answer')->get();
-        $data = DB::table('question')->get();
-        return view('test.Answer', compact('data'));
+        $answer = DB::table('answer')->get();
+        $question = DB::table('question')->get();
+        return view('test.Answer', compact('answer','question'));
     }
     public function back(){
-        $data = DB::table('answer')->get();
-        $data = DB::table('question')->get();
-        return view('test.Answer', compact('data'));
+        $answer = DB::table('answer')->get();
+        $question = DB::table('question')->get();
+        return view('test.Answer', compact('answer','question'));
     }
     public function NewAnswer(){
         return view('test.AnswerNew');
@@ -26,7 +26,7 @@ class AnswerController extends Controller
     protected function create(Request $req)
     {
         $question = new Question ;
-        $question ->test_id = $req->testID;
+        $question ->lession_id = $req->lession_id;
         $question ->question = $req->question;
         $question ->save();   
         $i=0;
