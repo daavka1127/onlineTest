@@ -39,8 +39,6 @@
                 </div>
             </div>
             <div class="test_text_body">
-
-
                     <div class="ques col-md-12" qid="1">
                         <div class="ques-text">1.&nbsp;asdfasdfasdf</div>
                         <div class="ans col-md-12">

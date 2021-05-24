@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LessonController;
-
+use App\Http\Controllers\RandomQuestions;
 use App\Http\Controllers\showTestController;
-
+use App\Http\Controllers\testDadaaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +33,7 @@ Route::post('/Tnew', [AdminController::class, 'create']);
 Route::post('/Test/action', [AdminController::class, 'action'])->name('tabledit.action');
 Route::get('/test/back', [AdminController::class, 'back']);
 Route::get('/home/back', [AdminController::class, 'homeback']);
+Route::get('/get/ques/{testID}', [RandomQuestions::class, 'getRandomQuestions']);
 
 
 //Answer
@@ -45,7 +46,18 @@ Route::get('/testshow', function () {
     return view('testShow');
 });
 
+
+// Route::get('/test/dadaa', function(){
+//     return view('testDadaa');
+// });
+Route::get('/test/dadaa', [testDadaaController::class, 'test']);
+
+Route::get('/test/dadaa/get/questions', [showTestController::class, 'createQuestions']);
 //Lesson
 Route::get('/Lesson', [LessonController::class, 'show']);
 Route::get('lesson/new', [LessonController::class, 'NewLesson']);
 Route::post('/Lnew', [LessonController::class, 'create']);
+
+
+Route::post('/finish/test', [showTestController::class, 'finishTest']);
+Route::get('/finish/test/{ansID}', [showTestController::class, 'answerPoint']);

@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use DB;
+
 class AnswerController extends Controller
 {
     public function show(){
@@ -42,11 +43,9 @@ class AnswerController extends Controller
             $answer ->save();   
             $i++;
         }
-        
-       
-        
     }
-      public function getDataTable()
+
+    public function getDataTable()
     {
         $question=DB::table('question')->get();
         $answer=DB::table('answer')->get();
