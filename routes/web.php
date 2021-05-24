@@ -7,6 +7,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\RandomQuestions;
 use App\Http\Controllers\showTestController;
+use App\Http\Controllers\ShowUserAnsweredQuestions;
 use App\Http\Controllers\testDadaaController;
 
 /*
@@ -42,10 +43,10 @@ Route::get('/answer/new', [AnswerController::class, 'NewAnswer']);
 Route::post('/Anew', [AnswerController::class, 'create']);
 Route::get('/answer/back', [AnswerController::class, 'back']);
 
-Route::get('/testshow', function () {
-    return view('testShow');
-});
+
 Route::get('/printquestion/{testID}', [RandomQuestions::class, 'getPrintQuestions']);
+Route::get('/show/users', [ShowUserAnsweredQuestions::class, 'showUsers']);
+Route::get('/show/userAnswer', [ShowUserAnsweredQuestions::class, 'getUserAnswers']);
 
 // Route::get('/test/dadaa', function(){
 //     return view('testDadaa');

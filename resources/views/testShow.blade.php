@@ -24,25 +24,25 @@
 
     </head>
     <body>
-<table width="500">
-    <tr><td colspan="4">1.asdf</td></tr>
-    <tr><td>A. ddfd</td></tr>
-    <tr><td>B. ddfd</td></tr>
-    <tr><td>C. ddfd</td></tr>
-    <tr><td>D. ddfd</td></tr>
-</table>
 
+<?php
+    $letter = ['A', 'B', 'C', 'D'];
+
+?>
     @foreach ($ques as $key => $value)
         <div class="ques col-md-12" qid="1">
-            <div class="ques-text">{{$value["number"]}}. {{$value["question"]}}</div>
+            <div>{{$value["number"]}}. {{$value["question"]}}</div>
             <div class="ans col-md-12">
 
                 <div class="row">
+                    <?php $i=0;?>
                     @foreach ($value["answers"] as $key => $ansVal)
-                        <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}" point="{{$ansVal["is_true"]}}">
-                            <div class="ans-text">
-                                {{$ansVal["answer"]}}
-                            </div>
+                        <div point="{{$ansVal["is_true"]}}">
+                            @if ($ansVal["is_true"] == 1)
+                            <?php echo $letter[$i].'. ';?> <strong>{{$ansVal["answer"]}}</strong><?php $i++;?>
+                            @else
+                                <?php echo $letter[$i].'. ';?> {{$ansVal["answer"]}} <?php $i++;?>
+                            @endif
                         </div>
                     @endforeach
                 </div>

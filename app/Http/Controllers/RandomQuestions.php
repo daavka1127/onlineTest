@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Session;
 
 class RandomQuestions extends Controller
 {
@@ -30,6 +31,7 @@ class RandomQuestions extends Controller
                 $datarow['question'] = $question->question;
 
                 $answers = $this->getAnswersByID($question->id);
+
                 $ansTable = [];
                 foreach ($answers as $answer) {
                     $ansRow = [];
@@ -44,8 +46,8 @@ class RandomQuestions extends Controller
                 $rowCount++;
             }
         }
-
-        return $arrQuestions;
+        Session::put('questions', $arrQuestions);
+        // return $arrQuestions;
     }
     public function getAnswersByID($qid)
     {
