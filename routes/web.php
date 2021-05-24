@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LessonController;
-
+use App\Http\Controllers\RandomQuestions;
 use App\Http\Controllers\showTestController;
 use App\Http\Controllers\testDadaaController;
 
@@ -33,6 +33,7 @@ Route::post('/Tnew', [AdminController::class, 'create']);
 Route::post('/Test/action', [AdminController::class, 'action'])->name('tabledit.action');
 Route::get('/test/back', [AdminController::class, 'back']);
 Route::get('/home/back', [AdminController::class, 'homeback']);
+Route::get('/get/ques/{testID}', [RandomQuestions::class, 'getRandomQuestions']);
 
 
 //Answer

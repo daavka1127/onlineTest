@@ -9,21 +9,22 @@ use DB;
 
 class showTestController extends Controller
 {
-    public function showTest(){
-        if (Session::has('user'))
-        {
+    public function showTest()
+    {
+        if (Session::has('user')) {
             $this->createQuestions();
             $questions = [];
             $questions = Session::get('questions');
             // return $questions;
             // return Session::get('user');
             return view('testDadaa', compact('questions'));
-        }else{
+        } else {
             return view('layouts.layout_user_login');
         }
     }
 
-    public function login_user(Request $req){
+    public function login_user(Request $req)
+    {
         try {
             $student = new Student;
             $student->unit = $req->unit;
@@ -39,12 +40,14 @@ class showTestController extends Controller
         }
     }
 
-    public function createQuestions(){
+    public function createQuestions()
+    {
         $questions = DB::table('question')->get();
+
         // return $questions;
         $arrQuestions = [];
         $rowCount = 1;
-        foreach($questions as $question){
+        foreach ($questions as $question) {
             $datarow = [];
             $datarow['number'] = $rowCount;
             $datarow['id'] = $question->id;
@@ -53,7 +56,7 @@ class showTestController extends Controller
 
             $answers = $this->getAnswersByID($question->id);
             $ansTable = [];
-            foreach($answers as $answer){
+            foreach ($answers as $answer) {
                 $ansRow = [];
                 $ansRow['id'] = $answer->id;
                 $ansRow['answer'] = $answer->answer;
@@ -69,7 +72,8 @@ class showTestController extends Controller
         // return $arrQuestions;
     }
 
-    public function getAnswersByID($qid){
+    public function getAnswersByID($qid)
+    {
         $answers = DB::table('answer')
             ->where('question_id', '=', $qid)
             ->get();
