@@ -10,12 +10,7 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('components/css/login.css')}}">
-<<<<<<< HEAD
         <link rel="stylesheet" href="{{url("css/test.css")}}">
-=======
-        <link rel="stylesheet" href="{{url('css/test.css')}}">
-
->>>>>>> b8617f848f8554cf2c7e19e20960d8faa42425b5
     </head>
     <body>
         <div class="header_logo row justify-content-center">
@@ -41,7 +36,7 @@
                             <div class="row">
                                 @foreach ($value["answers"] as $key => $ansVal)
                                     <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}">
-                                        <div class="ans-text"> 
+                                        <div class="ans-text">
                                             {{$ansVal["answer"]}}
                                         </div>
                                     </div>
@@ -59,7 +54,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
-                
+
             </div>
         </div>
     </body>
