@@ -57,3 +57,18 @@
     cursor: no-drop;
     background-color: #e21b40;
 }
+
+.testTime{
+    position: fixed;
+    height: 40px;
+    width: 80px;
+    background-color: #74b51d;
+    bottom: 100px;
+    right: 40px;
+    z-index: 90000;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    color:white;
+    font-size: 20px;
+}

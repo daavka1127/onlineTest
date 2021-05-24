@@ -29,8 +29,9 @@ class showTestController extends Controller
 
             $firstName = Session::get("lastName");
             $testName = $this->getTestName(Session::get('testID'));
+            $testTime = $this->getTestTime(Session::get('testID'));
 
-            return view('takeTest.takeTest', compact('questions', 'firstName', 'testName'));
+            return view('takeTest.takeTest', compact('questions', 'firstName', 'testName', 'testTime'));
         }else{
             return view('layouts.layout_user_login');
         }
@@ -98,5 +99,10 @@ class showTestController extends Controller
     public function getTestName($testID){
         $test = Test::find($testID);
         return $test->test_name;
+    }
+
+    public function getTestTime($testID){
+        $test = Test::find($testID);
+        return $test->time;
     }
 }

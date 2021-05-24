@@ -53,6 +53,7 @@ class RandomQuestions extends Controller
     {
         $answers = DB::table('answer')
             ->where('question_id', '=', $qid)
+            ->inRandomOrder()
             ->get();
         return $answers;
     }

@@ -1,4 +1,13 @@
 var jsonUserAns = [];
+
+var minute = $('#testTime').val();
+var second = minute * 60;
+localStorage.setItem("timeStatus", "ehellee");
+
+if (localStorage.getItem("leftSecond") > 0) {
+    second = localStorage.getItem("leftSecond");
+}
+
 if (localStorage.getItem("dadaaTable") === null) {
 }
 else{
@@ -46,16 +55,19 @@ $("#btnFinishTest").click(function(){
     var postUrl = $(this).attr("post-url");
 
     $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
         type: "POST",
         url: postUrl,
         data:{
-            _token: $('meta[name="csrf-token"]').attr('content'),
             userAns: jsonUserAns
         },
         success: function(res){
             if(res.status == "success"){
                 console.log(res);
                 alert(res.msg);
+                clearInterval(timerTest);
                 localStorage.clear();
                 window.location.replace("/");
             }
@@ -65,3 +77,51 @@ $("#btnFinishTest").click(function(){
         }
     });
 });
+
+
+function convert_tsag(){
+    var mod = second % 60;
+    if(mod < 10){
+        mod = "0" + mod;
+    }
+    var minut1 = (second - mod) / 60 + ":" + mod;
+    document.getElementById("divTime").innerHTML = minut1;
+    if(minut1 == "0:00"){
+        alert("Шалгалт дууслаа");
+        finishTest();
+    }
+    localStorage.setItem("testTime", minut1);
+    localStorage.setItem("leftSecond", second);
+    second = second - 1;
+}
+
+var timerTest = setInterval(function(){
+    convert_tsag();
+}, 1000);
+
+function finishTest(){
+    var postUrl = $("#btnFinishTest").attr("post-url");
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        type: "POST",
+        url: postUrl,
+        data:{
+            userAns: jsonUserAns
+        },
+        success: function(res){
+            if(res.status == "success"){
+                console.log(res);
+                alert(res.msg);
+                clearInterval(timerTest);
+                localStorage.clear();
+                window.location.replace("/");
+            }
+            else{
+                alert("Алдаа гарлаа!!!!!!!!!!!");
+            }
+        }
+    });
+}

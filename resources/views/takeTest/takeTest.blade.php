@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{url("css/test.css")}}">
     </head>
     <body>
+        <div class="testTime" id="divTime"></div>
         <div class="header_logo row justify-content-center">
         <div style="float: left; width:50px;">
             <img src="{{url("img/tovlogo.png")}}" height="50">
@@ -27,6 +28,7 @@
 
 
                 <input type="hidden" id="qCount" value="{{count($questions)}}" />
+                <input type="hidden" id="testTime" value="{{$testTime}}" />
 
                 @foreach ($questions as $key => $value)
                     <div class="ques col-md-12" qid="1">
