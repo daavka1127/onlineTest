@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('components/css/login.css')}}">
-
+        <link rel="stylesheet" href="{{url("css/test.css")}}">
     </head>
     <body>
         <div class="container">
@@ -27,18 +27,18 @@
                 @foreach ($questions as $key => $value)
                     <div class="ques col-md-12" qid="1">
                         <div class="ques-text">{{$value["number"]}}. {{$value["question"]}}</div>
-
+                        <div class="ans col-md-12">
 
                             <div class="row">
                                 @foreach ($value["answers"] as $key => $ansVal)
                                     <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}">
-                                        <div class="ans-text">
+                                        <div class="ans-text"> 
                                             {{$ansVal["answer"]}}
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-
+                        </div>
                     </div>
                 @endforeach
                 <div class="clearfix"></div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
-
+                
             </div>
         </div>
     </body>
