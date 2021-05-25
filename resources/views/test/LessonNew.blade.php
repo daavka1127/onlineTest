@@ -11,16 +11,7 @@
                     <form method="POST" action="{{ url('Lnew') }}">
                         @csrf
                         <h2 style="text-align:center">
-                            <div class="col-md-6">
-                                <input id="rank" type="text"  class="form-control @error('rank') is-invalid @enderror" name="rank" value="{{ old('rank') }}" placeholder="Цолоо оруулна уу!" required autocomplete="rank" autofocus>
 
-                                @error('rank')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                              
                             <div class="col-md-6">
                                 <input id="lessonName" type="text" class="form-control @error('lessonName') is-invalid @enderror" name="lessonName" value="{{ old('lessonName') }}" placeholder="Хичээлээ оруулна уу!" required autocomplete="lessonName" autofocus>
 
@@ -30,6 +21,28 @@
                                     </span>
                                 @enderror
                             </div>
+                            <br>
+
+                            <div class="col-md-6">
+                                <input id="rank" type="text"  class="form-control @error('rank') is-invalid @enderror" name="rank" value="{{ old('rank') }}" placeholder="Цолоо оруулна уу!" required autocomplete="rank" autofocus>
+
+                                @error('rank')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <br>
+
+                            <div class="col-md-6">
+                                <input id="lessonName" type="text" class="form-control @error('lessonName') is-invalid @enderror" name="lessonName" value="{{ old('lessonName') }}" placeholder="Хичээлээ оруулна уу!" required autocomplete="lessonName" autofocus>
+
+                                @error('lessonName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div> 
 
 
                         </div>

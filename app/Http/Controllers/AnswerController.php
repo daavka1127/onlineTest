@@ -10,6 +10,17 @@ use DB;
 
 class AnswerController extends Controller
 {
+<<<<<<< HEAD
+    public function show(){
+        $answer = DB::table('answer')->get();
+        $question = DB::table('question')->get();
+        return view('test.Answer', compact('answer','question'));
+    }
+    public function back(){
+        $answer = DB::table('answer')->get();
+        $question = DB::table('question')->get();
+        return view('test.Answer', compact('answer','question'));
+=======
     public function show()
     {
         $data = DB::table('answer')->get();
@@ -21,6 +32,7 @@ class AnswerController extends Controller
         $data = DB::table('answer')->get();
         $data = DB::table('question')->get();
         return view('test.Answer', compact('data'));
+>>>>>>> 0de2ff30ed8f35d480f5d51d92f620e45dc2d054
     }
     public function NewAnswer()
     {
@@ -29,11 +41,19 @@ class AnswerController extends Controller
     }
     protected function create(Request $req)
     {
+<<<<<<< HEAD
+        $question = new Question ;
+        $question ->lession_id = $req->lession_id;
+        $question ->question = $req->question;
+        $question ->save();   
+        $i=0;
+=======
         $question = new Question;
         $question->lesson_id = $req->testID;
         $question->question = $req->question;
         $question->save();
         $i = 0;
+>>>>>>> 0de2ff30ed8f35d480f5d51d92f620e45dc2d054
         foreach ($req->answers as $key) {
             $answer = new Answer;
             $answer->question_id = $question->id;
