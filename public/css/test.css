@@ -27,7 +27,7 @@
 .ans-box {
     border-radius: 5px;
     border-style: solid 1px;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .ans-text {
     cursor: pointer;

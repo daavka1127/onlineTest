@@ -10,17 +10,22 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('components/css/login.css')}}">
+        <link rel="stylesheet" href="{{url('css/test.css')}}">
 
     </head>
     <body>
+        <div class="header_logo row justify-content-center">
+        <div style="float: left; width:50px;">
+            <img src="{{url("img/tovlogo.png")}}" height="50">
+
+        </div>
+<div style="float: left; text-align:center;">Зэвсэгт хүчний программ хангамжын төвд хөгжүүлэв.</div>
+    </div>
         <div class="container">
             <div class="row justify-content-center">
                 <h3 class="text-center">Сайн байна уу? {{$firstName}}</h3>
                 <h2 class="text-center">{{$testName}}</h2>
-                <div class="header_logo">
-                    <img src="{{url("img/tovlogo.png")}}" height="50">
-                    Зэвсэгт хүчний программ хангамжын төвд хөгжүүлэв.
-                </div>
+
 
                 <input type="hidden" id="qCount" value="{{count($questions)}}" />
 
