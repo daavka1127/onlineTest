@@ -30,6 +30,7 @@ class RandomQuestions extends Controller
                 $datarow['question'] = $question->question;
 
                 $answers = $this->getAnswersByID($question->id);
+
                 $ansTable = [];
                 foreach ($answers as $answer) {
                     $ansRow = [];
