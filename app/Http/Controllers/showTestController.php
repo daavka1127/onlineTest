@@ -23,7 +23,8 @@ class showTestController extends Controller
                 $questions = Session::get('questions');
             } else {
                 $randQuestion = new RandomQuestions;
-                $randQuestion->getRandomQuestions(Session::get('testID'));
+                // return Session::get('rank');
+                $randQuestion->getRandomQuestions(Session::get('testID'), Session::get('rank'));
                 $questions = Session::get('questions');
             }
             // return Session::get('user');
@@ -33,18 +34,21 @@ class showTestController extends Controller
             $testTime = $this->getTestTime(Session::get('testID'));
 
             return view('takeTest.takeTest', compact('questions', 'firstName', 'testName', 'testTime'));
-        }else{
-            return view('layouts.layout_user_login');
+        } else {
+            $units = DB::table('tbunit')->get();
+            return view('layouts.layout_user_login', compact('units'));
         }
     }
 
     public function login_user(Request $req)
     {
+        // dd($req->rankName);
         // return "A";
         try {
             $student = new Student;
             $student->unit = $req->unit;
             $student->rank = $req->rank;
+            $student->rankName = $req->rankName;
             $student->RD = $req->RD;
             $student->first_name = $req->firstName;
             $student->last_name = $req->lastName;
@@ -52,6 +56,7 @@ class showTestController extends Controller
             Session::put('user', $student->id);
             Session::put('lastName', $student->last_name);
             Session::put('testID', '1');
+            Session::put('rank', $req->rank);
             return redirect('/');
         } catch (\Throwable $th) {
             return "Алдаа гарлаа";
@@ -135,7 +140,8 @@ class showTestController extends Controller
         return $test->test_name;
     }
 
-    public function getTestTime($testID){
+    public function getTestTime($testID)
+    {
         $test = Test::find($testID);
         return $test->time;
     }
