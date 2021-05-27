@@ -36,8 +36,8 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Цолны төрөл:</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="rank" id="cmbRank">
-                                        <option value="1">Ахлагч</option>
-                                        <option value="2">Офицер</option>
+                                        <option value="0">Ахлагч</option>
+                                        <option value="1">Офицер</option>
                                     </select>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@ Route::post('/Anew', [AnswerController::class, 'create']);
 Route::get('/answer/back', [AnswerController::class, 'back']);
 
 //tsaasaar hevleh bolon shalgalt ogson hun ba angiudiin dun harah
-Route::get('/printquestion/{testID}', [RandomQuestions::class, 'getPrintQuestions']);
+Route::get('/printquestion/{testID}/{rank}', [RandomQuestions::class, 'getPrintQuestions']);
 Route::get('/show/users', [ShowUserAnsweredQuestions::class, 'showUsers']);
 Route::get('/show/userAnswer', [ShowUserAnsweredQuestions::class, 'getUserAnswers']);
 Route::get('/show/unitAnswer', [ShowUserAnsweredQuestions::class, 'getUnitUserAnswers']);
