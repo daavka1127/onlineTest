@@ -43,14 +43,14 @@ Route::get('/answer/new', [AnswerController::class, 'NewAnswer']);
 Route::post('/Anew', [AnswerController::class, 'create']);
 Route::get('/answer/back', [AnswerController::class, 'back']);
 
-
+//tsaasaar hevleh bolon shalgalt ogson hun ba angiudiin dun harah
 Route::get('/printquestion/{testID}', [RandomQuestions::class, 'getPrintQuestions']);
 Route::get('/show/users', [ShowUserAnsweredQuestions::class, 'showUsers']);
 Route::get('/show/userAnswer', [ShowUserAnsweredQuestions::class, 'getUserAnswers']);
+Route::get('/show/unitAnswer', [ShowUserAnsweredQuestions::class, 'getUnitUserAnswers']);
+Route::get('/Unit', [ShowUserAnsweredQuestions::class, 'getUnits']);
 
-// Route::get('/test/dadaa', function(){
-//     return view('testDadaa');
-// });
+
 Route::get('/test/dadaa', [testDadaaController::class, 'test']);
 
 Route::get('/test/dadaa/get/questions', [showTestController::class, 'createQuestions']);
