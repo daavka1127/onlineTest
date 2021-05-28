@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\AnswerController;
+use Yajra\DataTable\Facades\DataTables;
 
 class RandomQuestions extends Controller
 {
     //
-    public function getRandomQuestions($testID)
+    public function getRandomQuestions($testID, $rank)
     {
 
         // $questions = DB::table('question')->where("lesson_id", "=", 1)->inRandomOrder()->limit(2)->get();
@@ -17,8 +19,15 @@ class RandomQuestions extends Controller
 
         $arrQuestions = [];
         $rowCount = 1;
+        if ($testID == '1')
+            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->get();
+        else {
+            // if ($rank == '0')
+            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '2')->orwhere('rank', '=', $rank)->get();
+        }
+        // else
+        //     $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '1')->orwhere('rank', '=', '2')->get();
 
-        $lessons = DB::table('lesson')->where("test_id", "=", $testID)->get();
 
         foreach ($lessons as $lesson) {
             // return $lesson->id . "    " . $lesson->question_count;
@@ -58,9 +67,9 @@ class RandomQuestions extends Controller
         return $answers;
     }
 
-    public function getPrintQuestions($testID)
+    public function getPrintQuestions($testID, $rank)
     {
-        $ques = $this->getRandomQuestions($testID);
+        $ques = $this->getRandomQuestions($testID, $rank);
         return view('testShow', compact('ques'));
     }
 }

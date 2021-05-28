@@ -22,9 +22,22 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Анги байгууллага:</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="unit" id="cmbUnit">
-                                        <option value="-1">Сонгоно уу</option>
-                                        <option value="-1">Сонгоно уу</option>
-                                        <option value="-1">Сонгоно уу</option>
+                                        @foreach ($units as $unit)
+
+                                            <option value="{{$unit->id}}">{{$unit->unit}}</option>
+                                        @endforeach
+                                        {{-- <option value="-1">Сонгоно уу</option>
+                                        <option value="-1">Сонгоно уу</option> --}}
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Цолны төрөл:</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="rank" id="cmbRank">
+                                        <option value="0">Ахлагч</option>
+                                        <option value="1">Офицер</option>
                                     </select>
                                 </div>
                             </div>
@@ -32,9 +45,26 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Цол:</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="rank" id="cmbRank">
-                                        <option value="1">Ахлагч</option>
-                                        <option value="2">Офицер</option>
+                                    <select class="form-control" name="rankName" id="cmbRank">
+                                        <option value="б/ч">Байлдагч</option>
+                                        <option value="а/б">Ахлах байлдагч</option>
+                                        <option value="д/т">Дэд түрүүч</option>
+                                        <option value="т/ч">Түрүүч</option>
+                                        <option value="а/т">Ахлах түрүүч</option>
+                                        <option value="д/а">Дэд ахлагч</option>
+                                        <option value="а/ч">Ахлагч</option>
+                                        <option value="а/а">Ахлах ахлагч</option>
+                                        <option value="с/а">Сургагч ахлагч</option>
+                                        <option value="т/а">Тэргүүн ахлагч</option>
+                                        <option value="д/ч">Дэслэгч</option>
+                                        <option value="а/д">Ахлах дэслэгч</option>
+                                        <option value="а/х">Ахмад</option>
+                                        <option value="х/ч">Хошууч</option>
+                                        <option value="д/х">Дэд хурандаа</option>
+                                        <option value="хур">Хурандаа</option>
+                                        <option value="Бр/ген">Бригадын генерал</option>
+                                        <option value="Х/ген">Хошууч генерал</option>
+                                        <option value="Д/ген">Дэслэгч генерал</option>
                                     </select>
                                 </div>
                             </div>

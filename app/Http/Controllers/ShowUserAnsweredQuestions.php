@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 
 class ShowUserAnsweredQuestions extends Controller
 {
@@ -27,7 +26,7 @@ class ShowUserAnsweredQuestions extends Controller
         if ($lawAns != null) {
             $answered = $lawAns->question_id;
             $answered = explode(";", $answered);
-            // return $answered;
+            return $answered;
         }
 
         $generalAns = DB::table('user_answer')
@@ -36,9 +35,46 @@ class ShowUserAnsweredQuestions extends Controller
         if ($generalAns != null) {
             $answered = $generalAns->question_id;
             $answered = explode(";", $answered);
-            return $answered;
+            // return $answered;
         }
 
         // return $req->userID;
+    }
+    public function getUnits()
+    {
+        $units = DB::table('tbunit')->get();
+        return view('UnitResultShow', compact('units'));
+    }
+    public function getUnitUserAnswers(Request $req)
+    {
+        // return $req->unidID;
+        $users = DB::table('user')->where('unit', '=', $req->unitID)->get();
+
+
+        $unitAllAns = [];
+        foreach ($users as $user) {
+            $unitans = [];
+            $unitans['rank'] = $user->rank;
+            $unitans['rankName'] = $user->rankName;
+            $unitans['RD'] = $user->RD;
+            $unitans['firstName'] = $user->first_name;
+            $unitans['lastName'] = $user->last_name;
+
+            $userres = DB::table('result')
+                ->where('user_id', '=', $user->id)->get();
+
+            // return count($userres);
+            $usertestans = [];
+            foreach ($userres as $res) {
+                $testAns = [];
+                $testAns['test_id'] = $res->test_id;
+                $testAns['result'] = $res->result_point;
+                array_push($usertestans, $testAns);
+            }
+            $unitans['answer'] = $usertestans;
+            array_push($unitAllAns, $unitans);
+        }
+
+        return $unitAllAns;
     }
 }
