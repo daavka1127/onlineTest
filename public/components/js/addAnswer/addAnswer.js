@@ -5,3 +5,4 @@ $("#btnNewAnswer").click(function(e){
     alert("Хадгаллаа");
     $("#frmNewQuestion").submit();
 });
+location.reload();

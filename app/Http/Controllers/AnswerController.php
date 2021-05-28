@@ -33,15 +33,15 @@ class AnswerController extends Controller
     {
         // $lessons = new Lesson;
         // $lessons ->lessonName;
-        // $lessons ->save();
+        // $lessons ->save();   
 
         $question = new Question ;
         $question->lesson_id = $req->lessonName;
         $question ->question = $req->question;
-        $question ->save();
+        $question ->save();   
         $i=0;
 
-
+      
 
         foreach ($req->answers as $key) {
             $answer = new Answer;
@@ -53,9 +53,10 @@ class AnswerController extends Controller
                 $answer->is_true = 0;
             }
             $answer->save();
+  
             $i++;
         }
-
+      
     }
 
     public function getDataTable()
