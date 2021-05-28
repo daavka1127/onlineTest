@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\AnswerController;
+use Yajra\DataTable\Facades\DataTables;
 
 class RandomQuestions extends Controller
 {

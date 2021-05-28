@@ -7,22 +7,25 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use App\Models\Lesson;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTable\Facades\DataTables;
 
 class AnswerController extends Controller
 {
 
-    public function show(){
+    public function show()
+    {
         $answer = DB::table('answer')->get();
         $question = DB::table('question')->get();
         $lesson = DB::table('lesson')->get();
-        return view('test.Answer', compact('answer','question','lesson'));
+        return view('test.Answer', compact('answer', 'question', 'lesson'));
     }
-    public function back(){
+    public function back()
+    {
         $answer = DB::table('answer')->get();
         $question = DB::table('question')->get();
         $lesson = DB::table('lesson')->get();
-        return view('test.Answer', compact('answer','question','lesson'));
+        return view('test.Answer', compact('answer', 'question', 'lesson'));
     }
     public function NewAnswer()
     {
@@ -35,11 +38,11 @@ class AnswerController extends Controller
         // $lessons ->lessonName;
         // $lessons ->save();
 
-        $question = new Question ;
+        $question = new Question;
         $question->lesson_id = $req->lessonName;
-        $question ->question = $req->question;
-        $question ->save();
-        $i=0;
+        $question->question = $req->question;
+        $question->save();
+        $i = 0;
 
 
 
@@ -55,15 +58,14 @@ class AnswerController extends Controller
             $answer->save();
             $i++;
         }
-
     }
 
     public function getDataTable()
     {
-        $lesson = DB::table('lesson')->get();
+        $lessons = DB::table('lesson')->get();
         $question = DB::table('question')->get();
         $answer = DB::table('answer')->get();
-        return DataTables::of($question, $answer , $lessons)
+        return DataTables::of($question, $answer, $lessons)
             ->make(true);
     }
 }

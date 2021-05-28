@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Test;
-use DB;
+use App\Http\Controllers\AnswerController;
+use Yajra\DataTable\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {

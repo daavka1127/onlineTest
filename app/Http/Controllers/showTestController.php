@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Models\Student;
 use App\Models\Answer;
 use App\Models\Test;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RandomQuestions;
 use App\Models\UserAnswer;
 use App\Models\Result;
