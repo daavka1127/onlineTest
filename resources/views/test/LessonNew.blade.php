@@ -5,7 +5,7 @@
                 <h2 style="text-align:center">
               <b>Хичээл бүртгэх хэсэг</b>
                <h2>
-                <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">    
+                <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('Lnew') }}">
@@ -25,7 +25,9 @@
 
                             <div class="col-md-6">
                                 <select id="rank" type="rank" class="form-control" name="rank"  required autocomplete="rank">
-                                    <option value="-1" selected disabled>Төрлөө сонгоно уу</option>
+                                    <option value="-1" se3
+
+                                        lected disabled>Төрлөө сонгоно уу</option>
                                     <option value="0">Ахлагч</option>
                                     <option value="1">Офицер</option>
                                     <option value="2">Бүгд</option>
@@ -52,7 +54,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div> 
+                            </div>
 
 
                         </div>
@@ -60,9 +62,9 @@
                                 <button type="submit" class="btn btn-success">
                                     Бүртгэх
                                 </button>
-                             
+
                                 <a href="{{url("/lesson/back")}}" class="btn btn-danger">Буцах</a>
-                             
+
                             </h2>
                             </div>
                         </div>
