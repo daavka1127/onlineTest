@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Test;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Yajra\DataTable\Facades\DataTables;
 
 class AdminController extends Controller
 {
