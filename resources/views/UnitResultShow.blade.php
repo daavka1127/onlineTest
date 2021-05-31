@@ -43,31 +43,6 @@
                 <div id="unitTable">
 
                 </div>
-                {{-- @foreach ($questions as $key => $value)
-                    <div class="ques col-md-12" qid="1">
-                        <div class="ques-text">{{$value["number"]}}. {{$value["question"]}}</div>
-                        <div class="ans col-md-12">
-
-                            <div class="row">
-                                @foreach ($value["answers"] as $key => $ansVal)
-                                    <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}">
-                                        <div class="ans-text">
-                                            {{$ansVal["answer"]}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                <div class="clearfix"></div>
-                <br>
-                <div class="form-group">
-                    <div class="row">
-                        <input id="btnFinishTest" post-url="{{url('/finish/test')}}" type="button" class="btn btn-success" value="Шалгалтыг дуусгах" />
-                    </div>
-                </div> --}}
-
             </div>
         </div>
     </body>
@@ -103,9 +78,7 @@
                         table += '<td>'+val['firstName']+'</td>';
 
                         $.each(val['answer'], function(i, item){
-                            // table += '<td>' + item.test_id + '</td>';
                             table += '<td>' + item.result + '</td>';
-                            // console.log(item.result);
                         });
 
                         table += '</tr>';
@@ -115,15 +88,6 @@
                     $("#unitTable").html("");
                     $("#unitTable").html(table);
 
-                    // if(res.status == "success"){
-                    //     console.log(res);
-                    //     alert(res.msg);
-                    //     localStorage.clear();
-                    //     window.location.replace("/");
-                    // }
-                    // else{
-                    //     alert("Алдаа гарлаа!!!!!!!!!!!");
-                    // }
                 }
             });
         });

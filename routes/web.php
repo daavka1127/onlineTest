@@ -46,6 +46,7 @@ Route::post('/answer/delete', [AnswerController::class, 'deleteQuestion']);
 
 //tsaasaar hevleh bolon shalgalt ogson hun ba angiudiin dun harah
 Route::get('/printquestion/{testID}/{rank}', [RandomQuestions::class, 'getPrintQuestions']);
+Route::get('/printrandquestion/{testID}/{rank}', [RandomQuestions::class, 'getPrintRandomQuestions']);
 Route::get('/show/users', [ShowUserAnsweredQuestions::class, 'showUsers']);
 Route::get('/show/userAnswer', [ShowUserAnsweredQuestions::class, 'getUserAnswers']);
 Route::get('/show/unitAnswer', [ShowUserAnsweredQuestions::class, 'getUnitUserAnswers']);

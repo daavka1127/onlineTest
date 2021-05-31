@@ -32,7 +32,17 @@
                 <div class="row">
                     <input id="showResult" post-url="{{url('/show/userAnswer')}}" type="button" class="btn btn-success" value="Үр дүн харах" />
                 </div>
+                <div class="clearfix"></div>
+                <label class="text-center"><h4>Ерөнхий суурь мэдлэглэгийн түвшин /хууль эрх зүй, цэргийн нийтлэг дүрмүүд,
+                    цэргийн алба зохион байгуулах заавар, ахлагчийн ёс зүйн дүрэм,
+                    оюуны чадавхи, сэтгэн бодох чадвар/</h4>
+                </label>
+                <div id="answeredlaw">
 
+                </div>
+                <div id="answeredgen">
+
+                </div>
                 {{-- @foreach ($questions as $key => $value)
                     <div class="ques col-md-12" qid="1">
                         <div class="ques-text">{{$value["number"]}}. {{$value["question"]}}</div>
@@ -79,16 +89,13 @@
                     userID: $("#select-state").val()
                 },
                 success: function(res){
-                    console.log(res);
-                    // if(res.status == "success"){
-                    //     console.log(res);
-                    //     alert(res.msg);
-                    //     localStorage.clear();
-                    //     window.location.replace("/");
-                    // }
-                    // else{
-                    //     alert("Алдаа гарлаа!!!!!!!!!!!");
-                    // }
+                     console.log(res);
+                    // console.log(res['law']);
+                    // $.each(res.answered, function(key, val){
+
+                    //     console.log(val['law']);
+                    // });
+
                 }
             });
         });

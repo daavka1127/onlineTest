@@ -20,25 +20,28 @@ class ShowUserAnsweredQuestions extends Controller
     }
     public function getUserAnswers(Request $req)
     {
+
+        $answeredlaw = null;
+        $answeredgen = null;
         $lawAns = DB::table('user_answer')
             ->where("user_id", "=", $req->userID)
             ->where("test_id", "=", "1")->first();
         if ($lawAns != null) {
-            $answered = $lawAns->question_id;
-            $answered = explode(";", $answered);
-            return $answered;
+            $answeredlaw = $lawAns->question_id;
+            $answeredlaw = explode(";", $answeredlaw);
         }
 
         $generalAns = DB::table('user_answer')
             ->where("user_id", "=", $req->userID)
             ->where("test_id", "=", "2")->first();
         if ($generalAns != null) {
-            $answered = $generalAns->question_id;
-            $answered = explode(";", $answered);
-            // return $answered;
+            $answeredgen = $generalAns->question_id;
+            $answeredgen = explode(";", $answeredgen);
         }
+        $answered['law'] = $answeredlaw;
+        $answered['general'] = $answeredgen;
 
-        // return $req->userID;
+        return $answered;
     }
     public function getUnits()
     {
