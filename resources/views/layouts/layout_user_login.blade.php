@@ -3,12 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <title>Зэвсэгт хүчний программ хангамжийн төв</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('components/css/login.css')}}">
+        <link rel="stylesheet" href="{{url('alertifyjs/css/alertify.min.css')}}">
     </head>
     <body>
         <div class="container">
@@ -16,6 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="text-center"><strong>Бүртгүүлнэ үү</strong></h5>
+                        <input type="hidden" id="hideSong" value="{{url('sound/alert.mp3')}}">
                         <form id="frmNewUser" method="POST" action="{{url('/login')}}">
                             @csrf
                             <div class="form-group row">
@@ -23,7 +26,6 @@
                                 <div class="col-md-6">
                                     <select class="form-control" name="unit" id="cmbUnit">
                                         @foreach ($units as $unit)
-
                                             <option value="{{$unit->id}}">{{$unit->unit}}</option>
                                         @endforeach
                                         {{-- <option value="-1">Сонгоно уу</option>
@@ -70,27 +72,34 @@
                             </div>
                             <br>
                             <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Таны мэргэжил:</label>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="occupation" maxlength="250" id="txtOccupation">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Регистрийн дугаар:</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" name="RD" id="txtRD">
+                                    <input class="form-control" maxlength="10" type="text" name="RD" id="txtRD">
                                 </div>
                             </div>
                             <br>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Овог:</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" name="firstName" id="txtFirstName">
+                                    <input class="form-control" maxlength="50" type="text" name="firstName" id="txtFirstName">
                                 </div>
                             </div>
                             <br>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Нэр:</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" name="lastName" id="txtLastName">
+                                    <input class="form-control" maxlength="50" type="text" name="lastName" id="txtLastName">
                                 </div>
                             </div>
                             <br>
-                            <input type="submit" class="btn btn-success" value="Нэвтрэх" />
+                            <input type="submit" post-url="{{url('/login')}}" id="btnLogin" class="btn btn-success" value="Нэвтрэх" />
                         </form>
                     </div>
                 </div>
@@ -99,5 +108,7 @@
     </body>
     <script src="{{url('jquery/jquery-3.6.0.min.js')}}"></script>
     <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url('alertifyjs/alertify.min.js')}}"></script>
+    <script src="{{url('components/js/login/login.js')}}"></script>
 
 </html>

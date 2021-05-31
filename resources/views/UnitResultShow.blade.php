@@ -90,10 +90,12 @@
                 },
                 success: function(res){
                     console.log(res);
+                    var index = 1;
                     var table='<table>';
-                    table += '<tr><th>Цолны ангилал</th><th>Цол</th><th>Регистрийн дугаар</th><th>Овгийн нэр</th><th>Өөрийн нэр</th><th>Хууль эрх зүй</th><th>Ерөнхий мэдлэг</th></tr>'
+                    table += '<tr><th>№</th><th>Цолны ангилал</th><th>Цол</th><th>Регистрийн дугаар</th><th>Овгийн нэр</th><th>Өөрийн нэр</th><th>Хууль эрх зүй</th><th>Ерөнхий мэдлэг</th></tr>'
                     $.each(res, function(key, val){
                         table += '<tr>';
+                        table += '<td>'+index+'</td>';
                         table += '<td>'+val['rank']+'</td>';
                         table += '<td>'+val['rankName']+'</td>';
                         table += '<td>'+val['RD']+'</td>';
@@ -107,6 +109,7 @@
                         });
 
                         table += '</tr>';
+                        index++;
                     });
                     table += '</table>'
                     $("#unitTable").html("");

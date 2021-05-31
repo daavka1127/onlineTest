@@ -35,7 +35,9 @@ class showTestController extends Controller
 
             return view('takeTest.takeTest', compact('questions', 'firstName', 'testName', 'testTime'));
         } else {
-            $units = DB::table('tbunit')->get();
+            $units = DB::table('tbunit')
+                ->where('memo', '=', 1)
+                ->get();
             return view('layouts.layout_user_login', compact('units'));
         }
     }
@@ -45,10 +47,19 @@ class showTestController extends Controller
         // dd($req->rankName);
         // return "A";
         try {
+            $count = $this->checkUserHas($req->RD);
+            if ($count > 0) {
+                $array = array(
+                    'status' => 'loginError',
+                    'msg' => 'Та нэвтэрсэн байна. Шалгалчид хангана уу!!!'
+                );
+                return $array;
+            }
             $student = new Student;
             $student->unit = $req->unit;
             $student->rank = $req->rank;
             $student->rankName = $req->rankName;
+            $student->occupation = $req->occupation;
             $student->RD = $req->RD;
             $student->first_name = $req->firstName;
             $student->last_name = $req->lastName;
@@ -57,9 +68,17 @@ class showTestController extends Controller
             Session::put('lastName', $student->last_name);
             Session::put('testID', '1');
             Session::put('rank', $req->rank);
-            return redirect('/');
+            $array = array(
+                'status' => 'success',
+                'msg' => 'ok!!!'
+            );
+            return $array;
         } catch (\Throwable $th) {
-            return "Алдаа гарлаа";
+            $array = array(
+                'status' => 'error',
+                'msg' => 'Алдаа гарлаа!!!'
+            );
+            return $array;
         }
     }
 
@@ -75,6 +94,34 @@ class showTestController extends Controller
         $qids = "";
         $anss = "";
         $cond = true;
+
+        if ($req->userAns == null) {
+            $userans = new UserAnswer;
+            $userans->user_id = Session::get('user');
+            $userans->test_id = Session::get('testID');
+            $userans->question_id = "";
+            $userans->answer_id = "";
+            $userans->save();
+            $result = new Result;
+            $result->user_id = Session::get('user');
+            $result->test_id = Session::get('testID');
+            $result->result_point = 0;
+            $result->save();
+            if ($testID == 1) {
+                Session::forget('questions');
+                Session::put('testID', '2');
+            } else {
+                Session::flush();
+                $testID = 3;
+            }
+            $array = array(
+                'status' => 'success',
+                'msg' => "Та " . count($questions) . " ширхэг асуултнаас 0 оноо авлаа.",
+                'testID' => $testID
+            );
+            return $array;
+        }
+
         foreach ($req->userAns as $key => $value) {
             $answerPoint = $this->answerPoint($value["ansID"]);
             $point = $point + $answerPoint;
@@ -144,5 +191,13 @@ class showTestController extends Controller
     {
         $test = Test::find($testID);
         return $test->time;
+    }
+
+    public function checkUserHas($rd)
+    {
+        $users = DB::table('user')
+            ->where('RD', '=', $rd)
+            ->get();
+        return count($users);
     }
 }

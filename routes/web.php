@@ -42,6 +42,7 @@ Route::get('/Answer', [AnswerController::class, 'show']);
 Route::get('/answer/new', [AnswerController::class, 'NewAnswer']);
 Route::post('/Anew', [AnswerController::class, 'create']);
 Route::get('/answer/back', [AnswerController::class, 'back']);
+Route::post('/answer/delete', [AnswerController::class, 'deleteQuestion']);
 
 //tsaasaar hevleh bolon shalgalt ogson hun ba angiudiin dun harah
 Route::get('/printquestion/{testID}/{rank}', [RandomQuestions::class, 'getPrintQuestions']);
@@ -63,3 +64,8 @@ Route::get('/lesson/back', [LessonController::class, 'back']);
 
 Route::post('/finish/test', [showTestController::class, 'finishTest']);
 Route::get('/finish/test/{ansID}', [showTestController::class, 'answerPoint']);
+
+
+// QUESTION routes
+Route::get('/get/all/questions', [AnswerController::class, 'getDataTable']);
+Route::get('/get/answers/count/{id}', [AnswerController::class, 'getAnswersByQuestionID']);

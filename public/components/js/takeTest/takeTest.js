@@ -9,6 +9,7 @@ if (localStorage.getItem("leftSecond") > 0) {
 }
 
 if (localStorage.getItem("dadaaTable") === null) {
+    // jsonUserAns = null;
 }
 else{
     jsonUserAns = JSON.parse(localStorage.getItem("dadaaTable"));
@@ -47,10 +48,10 @@ function search(qid, ansID){
 }
 
 $("#btnFinishTest").click(function(){
-    if(jsonUserAns.length < $("#qCount").val()){
-        alert("Та шалгалтаа бүрэн хариулаагүй байна!!!");
-        return;
-    }
+    // if(jsonUserAns.length < $("#qCount").val()){
+    //     alert("Та шалгалтаа бүрэн хариулаагүй байна!!!");
+    //     return;
+    // }
 
     var postUrl = $(this).attr("post-url");
 
