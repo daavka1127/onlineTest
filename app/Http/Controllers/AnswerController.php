@@ -49,17 +49,19 @@ class AnswerController extends Controller
 
 
         foreach ($req->answers as $key) {
-            $answer = new Answer;
-            $answer->question_id = $question->id;
-            $answer->answer = $key;
-            if ($i == $req->rad) {
-                $answer->is_true = 1;
-            } else {
-                $answer->is_true = 0;
-            }
-            $answer->save();
+            if ($key != "") {
+                $answer = new Answer;
+                $answer->question_id = $question->id;
+                $answer->answer = $key;
+                if ($i == $req->rad) {
+                    $answer->is_true = 1;
+                } else {
+                    $answer->is_true = 0;
+                }
+                $answer->save();
 
-            $i++;
+                $i++;
+            }
         }
         return $question->id;
     }

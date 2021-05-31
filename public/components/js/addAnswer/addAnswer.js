@@ -1,6 +1,32 @@
 var index = 2;
 
+$("input[name='answers[]']").keyup(function(){
+    if($(this).val().trim() != ""){
+        $("#rad" + $(this).attr("index")).prop( "disabled", false );
+    }
+    else{
+        $("#rad" + $(this).attr("index")).prop( "disabled", true );
+    }
+});
+
 $("#btnNewAnswer").click(function(e){
+    if($("#cmbLessonId").val() === "0"){
+        alert("Та хичээлээ сонгоно уу!!!");
+        return;
+    }
+    if($("#question").val() == 0){
+        alert("Та асуултаа оруулна уу!!!");
+        return;
+    }
+    if($("#txtAns1").val().trim() == "" && $("#txtAns2").val().trim() == ""){
+        alert("Та ядаж 2 хариулт оруулна уу!!!");
+        return;
+    }
+
+    if (!$("input[name='rad']:checked").val()) {
+        alert('Nothing is checked!');
+        return;
+    }
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -20,8 +46,9 @@ $("#btnNewAnswer").click(function(e){
                 $("#txtAns3").val(),
                 $("#txtAns4").val(),
             ] ).draw( false );
-
-            // counter++;
+            $("#question").val('');
+            $("input[name='answers[]']").val('');
+            $("input[name=rad]").prop('checked', false);
         }
     });
 });
