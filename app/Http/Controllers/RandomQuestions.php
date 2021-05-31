@@ -11,7 +11,7 @@ use Yajra\DataTable\Facades\DataTables;
 class RandomQuestions extends Controller
 {
     //
-    public function getRandomQuestions($testID, $rank)
+    public function getRandomQuestions($testID, $rank, $rand)
     {
 
         // $questions = DB::table('question')->where("lesson_id", "=", 1)->inRandomOrder()->limit(2)->get();
@@ -19,17 +19,20 @@ class RandomQuestions extends Controller
 
         $arrQuestions = [];
         $rowCount = 1;
-        // if ($testID == '1')
-        //     $lessons = DB::table('lesson')->where("test_id", "=", $testID)->get();
+        if ($testID == '1')
+            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->get();
         // $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '2')->orwhere('rank', '=', $rank)->get();
-        // else {
-
-        $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '2')->orwhere('rank', '=', $rank)->get();
-        // }
+        else {
+            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '2')->orwhere('rank', '=', $rank)->get();
+        }
 
         foreach ($lessons as $lesson) {
             // return $lesson->id . "    " . $lesson->question_count;
-            $questions = DB::table('question')->where("lesson_id", "=", $lesson->id)->inRandomOrder()->limit($lesson->question_count)->get();
+            if ($rand == '0')
+                $questions = DB::table('question')->where("lesson_id", "=", $lesson->id)->inRandomOrder()->limit($lesson->question_count)->get();
+            else
+                $questions = DB::table('question')->where("lesson_id", "=", $lesson->id)->get();
+
             foreach ($questions as $question) {
                 $datarow = [];
                 $datarow['number'] = $rowCount;
@@ -54,7 +57,7 @@ class RandomQuestions extends Controller
             }
         }
         Session::put('questions', $arrQuestions);
-        // return $arrQuestions;
+        return $arrQuestions;
     }
     public function getAnswersByID($qid)
     {
@@ -67,7 +70,13 @@ class RandomQuestions extends Controller
 
     public function getPrintQuestions($testID, $rank)
     {
-        $ques = $this->getRandomQuestions($testID, $rank);
+        $ques = $this->getRandomQuestions($testID, $rank, '1');
+        return view('testShow', compact('ques'));
+    }
+    public function getPrintRandomQuestions($testID, $rank)
+    {
+        $ques = $this->getRandomQuestions($testID, $rank, '0');
+        // dd($ques);
         return view('testShow', compact('ques'));
     }
 }
