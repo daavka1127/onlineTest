@@ -67,15 +67,16 @@
                     console.log(res);
                     var index = 1;
                     var table='<table>';
-                    table += '<tr><th>№</th><th>Цолны ангилал</th><th>Цол</th><th>Регистрийн дугаар</th><th>Овгийн нэр</th><th>Өөрийн нэр</th><th>Хууль эрх зүй</th><th>Ерөнхий мэдлэг</th></tr>'
+                    table += '<tr><th>№</th><th>Цолны ангилал</th><th>Мэргэжил</th><th>Цол</th><th>Регистрийн дугаар</th><th>Овог</th><th>Өөрийн нэр</th><th>Хууль эрх зүй</th><th>Ерөнхий мэдлэг</th></tr>'
                     $.each(res, function(key, val){
                         table += '<tr>';
                         table += '<td>'+index+'</td>';
                         table += '<td>'+val['rank']+'</td>';
+                        table += '<td>'+val['occupation']+'</td>';
                         table += '<td>'+val['rankName']+'</td>';
                         table += '<td>'+val['RD']+'</td>';
-                        table += '<td>'+val['lastName']+'</td>';
                         table += '<td>'+val['firstName']+'</td>';
+                        table += '<td>'+val['lastName']+'</td>';
 
                         $.each(val['answer'], function(i, item){
                             table += '<td>' + item.result + '</td>';
@@ -87,7 +88,6 @@
                     table += '</table>'
                     $("#unitTable").html("");
                     $("#unitTable").html(table);
-
                 }
             });
         });

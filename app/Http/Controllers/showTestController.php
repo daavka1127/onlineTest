@@ -24,7 +24,7 @@ class showTestController extends Controller
             } else {
                 $randQuestion = new RandomQuestions;
                 // return Session::get('rank');
-                $randQuestion->getRandomQuestions(Session::get('testID'), Session::get('rank'));
+                $randQuestion->getRandomQuestions(Session::get('testID'), Session::get('rank'), "0");
                 $questions = Session::get('questions');
             }
             // return Session::get('user');

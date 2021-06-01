@@ -40,33 +40,12 @@
                 <div id="answeredlaw">
 
                 </div>
+                <label class="text-center"><h4>Цэргийн мэргэжлийн суурь мэдлэгийн түвшин /тактик, тусгай тактик,
+                    тусгай бэлтгэл, бусад мэргэшүүлэх хичээл/</h4>
+                </label>
                 <div id="answeredgen">
 
                 </div>
-                {{-- @foreach ($questions as $key => $value)
-                    <div class="ques col-md-12" qid="1">
-                        <div class="ques-text">{{$value["number"]}}. {{$value["question"]}}</div>
-                        <div class="ans col-md-12">
-
-                            <div class="row">
-                                @foreach ($value["answers"] as $key => $ansVal)
-                                    <div class="ans-box col-md-3" qid="{{$value["id"]}}" ansID="{{$ansVal["id"]}}">
-                                        <div class="ans-text">
-                                            {{$ansVal["answer"]}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                <div class="clearfix"></div>
-                <br>
-                <div class="form-group">
-                    <div class="row">
-                        <input id="btnFinishTest" post-url="{{url('/finish/test')}}" type="button" class="btn btn-success" value="Шалгалтыг дуусгах" />
-                    </div>
-                </div> --}}
 
             </div>
         </div>
@@ -89,12 +68,48 @@
                     userID: $("#select-state").val()
                 },
                 success: function(res){
-                     console.log(res);
-                    // console.log(res['law']);
-                    // $.each(res.answered, function(key, val){
+                    var divlaw = "";
+                    $.each(res.law, function(key, val){
+                        divlaw += '<label style="font-weight:bold">'+ val["ques"].question +"</label>"
 
-                    //     console.log(val['law']);
-                    // });
+                        $.each(val['ans'], function(k, v){
+                            console.log("hariulsan:" +val["hariulsan"] + "    tuhain asuultin id:"+ v["id"] + "    istrue:"+v["istrue"]);
+                            if((val["hariulsan"] == v["id"]) && (v["istrue"] == '1'))
+                                divlaw += '<div style="text-indent:20px; color: green"> Зөв хариулсан:  ' + v["answer"] + '</div>'
+                            else if((val["hariulsan"] == v["id"]) && (v["istrue"] == '0'))
+                                divlaw += '<div style="text-indent:20px; color: red"> Буруу хариулсан:  ' + v["answer"] + '</div>'
+                            else if(v["istrue"] == '1')
+                                divlaw += '<div style="text-indent:20px; color:blue">Зөв хариулт нь:   ' + v["answer"] + '</div>'
+                            else
+                                divlaw += '<div style="text-indent:20px;">' + v["answer"] + '</div>'
+                        });
+
+
+                    });
+
+                    var divgen = "";
+                    $.each(res.general, function(key, val){
+                        divgen += '<label style="font-weight:bold">'+ val["ques"].question +"</label>"
+
+                        $.each(val['ans'], function(k, v){
+                            console.log("hariulsan:" +val["hariulsan"] + "    tuhain asuultin id:"+ v["id"] + "    istrue:"+v["istrue"]);
+                            if((val["hariulsan"] == v["id"]) && (v["istrue"] == '1'))
+                                divgen += '<div style="text-indent:20px; color: green"> Зөв хариулсан:  ' + v["answer"] + '</div>'
+                            else if((val["hariulsan"] == v["id"]) && (v["istrue"] == '0'))
+                                divgen += '<div style="text-indent:20px; color: red"> Буруу хариулсан:  ' + v["answer"] + '</div>'
+                            else if(v["istrue"] == '1')
+                                divgen += '<div style="text-indent:20px; color:blue">Зөв хариулт нь:   ' + v["answer"] + '</div>'
+                            else
+                                divgen += '<div style="text-indent:20px;">' + v["answer"] + '</div>'
+                        });
+
+
+                    });
+
+                    $("#answeredlaw").html("");
+                    $("#answeredlaw").html(divlaw);
+                    $("#answeredgen").html("");
+                    $("#answeredgen").html(divgen);
 
                 }
             });

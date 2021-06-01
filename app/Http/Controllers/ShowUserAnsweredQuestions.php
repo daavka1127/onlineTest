@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Answer;
 
 class ShowUserAnsweredQuestions extends Controller
 {
@@ -28,7 +29,9 @@ class ShowUserAnsweredQuestions extends Controller
             ->where("test_id", "=", "1")->first();
         if ($lawAns != null) {
             $answeredlaw = $lawAns->question_id;
+            $answeredlawans = $lawAns->answer_id;
             $answeredlaw = explode(";", $answeredlaw);
+            $answeredlawans = explode(";", $answeredlawans);
         }
 
         $generalAns = DB::table('user_answer')
@@ -37,9 +40,58 @@ class ShowUserAnsweredQuestions extends Controller
         if ($generalAns != null) {
             $answeredgen = $generalAns->question_id;
             $answeredgen = explode(";", $answeredgen);
+            $answeredgenans = $generalAns->answer_id;
+            $answeredgenans = explode(";", $answeredgenans);
         }
-        $answered['law'] = $answeredlaw;
-        $answered['general'] = $answeredgen;
+
+        $queswithanslaw = [];
+        for ($i = 0; $i < count($answeredlaw); $i++) {
+            $ques = [];
+            $ques["id"] = $answeredlaw[$i];
+            $q = DB::table("question")->select('question')->where("id", "=", $answeredlaw[$i])->first();
+            if ($q != null)
+                $ques["ques"] = DB::table("question")->select('question')->where("id", "=", $answeredlaw[$i])->first();
+            $ques["hariulsan"] = $answeredlawans[$i];
+
+            $anss = DB::table('answer')->where('question_id', '=', $answeredlaw[$i])->get();
+            // return count($anss);
+            $row = [];
+            foreach ($anss as $ans) {
+                $data = [];
+                $data["id"] = $ans->id;
+                $data["answer"] = $ans->answer;
+                $data["istrue"] = $ans->is_true;
+                array_push($row, $data);
+            }
+            $ques["ans"] = $row;
+            array_push($queswithanslaw, $ques);
+        }
+        $queswithansgeneral = [];
+        for ($i = 0; $i < count($answeredgen); $i++) {
+            $ques = [];
+            $ques["id"] = $answeredgen[$i];
+            $q = DB::table("question")->select('question')->where("id", "=", $answeredgen[$i])->first();
+            if ($q != null)
+                $ques["ques"] = DB::table("question")->select('question')->where("id", "=", $answeredgen[$i])->first();
+            $ques["hariulsan"] = $answeredgenans[$i];
+
+            $anss = DB::table('answer')->where('question_id', '=', $answeredgen[$i])->get();
+            // return count($anss);
+            $row = [];
+            foreach ($anss as $ans) {
+                $data = [];
+                $data["id"] = $ans->id;
+                $data["answer"] = $ans->answer;
+                $data["istrue"] = $ans->is_true;
+                array_push($row, $data);
+            }
+            $ques["ans"] = $row;
+            array_push($queswithansgeneral, $ques);
+        }
+        // return $queswithans;
+
+        $answered['law'] = $queswithanslaw;
+        $answered['general'] = $queswithansgeneral;
 
         return $answered;
     }
@@ -58,6 +110,7 @@ class ShowUserAnsweredQuestions extends Controller
         foreach ($users as $user) {
             $unitans = [];
             $unitans['rank'] = $user->rank;
+            $unitans['occupation'] = $user->occupation;
             $unitans['rankName'] = $user->rankName;
             $unitans['RD'] = $user->RD;
             $unitans['firstName'] = $user->first_name;

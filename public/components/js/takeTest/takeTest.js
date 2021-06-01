@@ -48,10 +48,10 @@ function search(qid, ansID){
 }
 
 $("#btnFinishTest").click(function(){
-    // if(jsonUserAns.length < $("#qCount").val()){
-    //     alert("Та шалгалтаа бүрэн хариулаагүй байна!!!");
-    //     return;
-    // }
+    if(jsonUserAns.length < $("#qCount").val()){
+        alert("Та шалгалтаа бүрэн хариулаагүй байна!!!");
+        return;
+    }
 
     var postUrl = $(this).attr("post-url");
 

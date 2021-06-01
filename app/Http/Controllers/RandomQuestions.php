@@ -14,17 +14,18 @@ class RandomQuestions extends Controller
     public function getRandomQuestions($testID, $rank, $rand)
     {
 
-        // $questions = DB::table('question')->where("lesson_id", "=", 1)->inRandomOrder()->limit(2)->get();
-        // return $questions;
-
         $arrQuestions = [];
         $rowCount = 1;
-        if ($testID == '1')
-            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->get();
-        // $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '2')->orwhere('rank', '=', $rank)->get();
-        else {
-            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where('rank', '=', '2')->orwhere('rank', '=', $rank)->get();
+        if ($rank == '1') {
+            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where(function ($query) {
+                $query->where('rank', '1')->orwhere('rank', '2');
+            })->get();
+        } else {
+            $lessons = DB::table('lesson')->where("test_id", "=", $testID)->where(function ($query) {
+                $query->where('rank', '0')->orwhere('rank', '2');
+            })->get();
         }
+
 
         foreach ($lessons as $lesson) {
             // return $lesson->id . "    " . $lesson->question_count;
