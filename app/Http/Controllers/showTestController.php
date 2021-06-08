@@ -32,14 +32,37 @@ class showTestController extends Controller
             $firstName = Session::get("lastName");
             $testName = $this->getTestName(Session::get('testID'));
             $testTime = $this->getTestTime(Session::get('testID'));
+            // return Session::get('user_type');
 
-            return view('takeTest.takeTest', compact('questions', 'firstName', 'testName', 'testTime'));
+            if (Session::get('user_type') == "privilage") {
+                return view('takeTest.takeTestSpecial', compact('questions', 'firstName', 'testName', 'testTime'));
+            } else if (Session::get('user_type') == "little_privilage") {
+                return view('takeTest.takeTestLittle', compact('questions', 'firstName', 'testName', 'testTime'));
+            } else {
+                return view('takeTest.takeTest', compact('questions', 'firstName', 'testName', 'testTime'));
+            }
         } else {
             $units = DB::table('tbunit')
                 ->where('memo', '=', 1)
                 ->get();
             return view('layouts.layout_user_login', compact('units'));
         }
+    }
+
+    public function privilageUserLogin()
+    {
+        $units = DB::table('tbunit')
+            ->where('memo', '=', 1)
+            ->get();
+        return view('layouts.layout_privelage_user_login', compact('units'));
+    }
+
+    public function littlePrivilageUserLogin()
+    {
+        $units = DB::table('tbunit')
+            ->where('memo', '=', 1)
+            ->get();
+        return view('layouts.layout_little_privilage', compact('units'));
     }
 
     public function login_user(Request $req)
@@ -68,6 +91,7 @@ class showTestController extends Controller
             Session::put('lastName', $student->last_name);
             Session::put('testID', '1');
             Session::put('rank', $req->rank);
+            Session::put('user_type', $req->type);
             $array = array(
                 'status' => 'success',
                 'msg' => 'ok!!!'

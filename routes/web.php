@@ -70,3 +70,9 @@ Route::get('/finish/test/{ansID}', [showTestController::class, 'answerPoint']);
 // QUESTION routes
 Route::get('/get/all/questions', [AnswerController::class, 'getDataTable']);
 Route::get('/get/answers/count/{id}', [AnswerController::class, 'getAnswersByQuestionID']);
+
+
+
+
+Route::get('/dada', [showTestController::class, 'littlePrivilageUserLogin']);
+Route::get('/dada2', [showTestController::class, 'privilageUserLogin']);

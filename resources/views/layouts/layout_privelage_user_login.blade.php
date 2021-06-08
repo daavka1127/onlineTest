@@ -21,7 +21,7 @@
                         <input type="hidden" id="hideSong" value="{{url('sound/alert.mp3')}}">
                         <form id="frmNewUser" method="POST" action="{{url('/login')}}">
                             @csrf
-                            <input type="hidden" name="type" value="normal" />
+                            <input type="hidden" name="type" value="privilage" />
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Анги байгууллага:</label>
                                 <div class="col-md-6">
