@@ -49,6 +49,7 @@ $("#btnNewAnswer").click(function(e){
             $("#question").val('');
             $("input[name='answers[]']").val('');
             $("input[name=rad]").prop('checked', false);
+            $("input[name=rad]").prop('disabled', true);
         }
     });
 });
