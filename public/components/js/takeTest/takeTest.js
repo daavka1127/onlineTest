@@ -66,7 +66,7 @@ $("#btnFinishTest").click(function(){
         },
         success: function(res){
             if(res.status == "success"){
-                console.log(res);
+                // console.log(res);
                 alert(res.msg);
                 clearInterval(timerTest);
                 localStorage.clear();
@@ -114,7 +114,7 @@ function finishTest(){
         },
         success: function(res){
             if(res.status == "success"){
-                console.log(res);
+                // console.log(res);
                 alert(res.msg);
                 clearInterval(timerTest);
                 localStorage.clear();

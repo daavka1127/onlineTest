@@ -49,7 +49,7 @@
                                         <div class="ans-text">
                                             @if ($showAns)
                                                 @if($ansVal['is_true'] == 1)
-                                                    {{$ansVal["answer"]}}...
+                                                    {{$ansVal["answer"]}}
                                                 @else
                                                     {{$ansVal["answer"]}}
                                                 @endif
